@@ -1,0 +1,47 @@
+# Heavy generated outputs and local science data
+result*
+target*
+targets*
+
+# Python virtual environments
+.venv/
+venv/
+env/
+stringlensing/venv/
+
+# Native extension build products
+build/
+dist/
+*.egg-info/
+stringlensing/build/
+*.so
+*.pyd
+*.dylib
+*.dll
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Tool and package caches
+.cache/
+pip-wheel-metadata/
+
+# Matplotlib/runtime caches and temporary files
+matplotlib-*/
+*.tmp
+*.temp
+*.log
+
+# OS and editor metadata
+.DS_Store
+._*
+Thumbs.db
+.idea/
+.vscode/

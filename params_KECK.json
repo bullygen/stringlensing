@@ -1,0 +1,109 @@
+{
+  "id": "KeckII_DEIMOS_optical_direct_imaging",
+  "telescope": {
+    "name": "Keck II",
+    "site": "Mauna Kea",
+    "aperture_m": 10.0
+  },
+  "instrument": {
+    "name": "DEIMOS",
+    "mode": "optical_direct_imaging",
+    "pixel_scale_arcsec_per_pixel": 0.1185,
+    "pixel_area_arcsec2_per_pixel": 0.01404225,
+    "wavelength_range_angstrom": [4000, 10500],
+    "standard_filters": ["B", "V", "R", "I", "Z"],
+    "detector": {
+      "format_pixels": [8192, 8192],
+      "pixel_size_um": 15,
+      "gain_electrons_per_DN_used": 1.211,
+      "gain_note": "Mean of normal direct-mode science-amplifier gains; anomalous 8.153 e-/DN channel excluded."
+    }
+  },
+  "psf": {
+    "gaussian_conversion": {
+      "sigma_arcsec": "fwhm_arcsec / 2.35482",
+      "sigma_pixels": "sigma_arcsec / pixel_scale_arcsec_per_pixel"
+    },
+    "cases": {
+      "instrumental_center": {
+        "sigma_pixels": 1.1,
+        "fwhm_pixels": 2.5903,
+        "sigma_arcsec": 0.13035,
+        "fwhm_arcsec": 0.30695
+      },
+      "instrumental_edge": {
+        "sigma_pixels": 1.4,
+        "fwhm_pixels": 3.29675,
+        "sigma_arcsec": 0.1659,
+        "fwhm_arcsec": 0.39066
+      },
+      "seeing_0p7_arcsec": {
+        "fwhm_arcsec": 0.7,
+        "sigma_arcsec": 0.29726,
+        "fwhm_pixels": 5.90717,
+        "sigma_pixels": 2.50855
+      },
+      "combined_seeing_0p7_plus_instrumental_center": {
+        "combination": "sigma_total^2 = sigma_seeing^2 + sigma_instrumental_center^2",
+        "sigma_arcsec": 0.32463,
+        "fwhm_arcsec": 0.76439,
+        "sigma_pixels": 2.73948,
+        "fwhm_pixels": 6.45052
+      }
+    }
+  },
+  "sky_background": {
+    "rate_unit": "electrons_per_second_per_pixel",
+    "calculation": "sky_electrons_per_second_per_pixel = gain_electrons_per_DN * pixel_area_arcsec2_per_pixel * 10^(0.4 * (zero_point_mag_for_1_DN_per_second - sky_mu_mag_arcsec2))",
+    "sky_condition": "new_moon_zenith_Mauna_Kea",
+    "filters": {
+      "B": {
+        "system": "Bessell-like broadband",
+        "sky_central_wavelength_um": 0.44,
+        "sky_mu_mag_arcsec2": 22.3,
+        "zero_point_mag_for_1_DN_per_second": null,
+        "sky_DN_per_second_per_pixel": null,
+        "sky_electrons_per_second_per_pixel": null
+      },
+      "V": {
+        "system": "Vega",
+        "sky_central_wavelength_um": 0.55,
+        "sky_mu_mag_arcsec2": 21.1,
+        "zero_point_mag_for_1_DN_per_second": 27.5,
+        "sky_DN_per_second_per_pixel": 5.09843,
+        "sky_electrons_per_second_per_pixel": 6.1742,
+        "sky_electrons_per_pixel_at_300s": 1852.26,
+        "sky_electrons_per_pixel_at_600s": 3704.52
+      },
+      "R": {
+        "system": "Vega",
+        "sky_central_wavelength_um": 0.64,
+        "sky_mu_mag_arcsec2": 20.3,
+        "zero_point_mag_for_1_DN_per_second": 27.9,
+        "sky_DN_per_second_per_pixel": 15.39702,
+        "sky_electrons_per_second_per_pixel": 18.64579,
+        "sky_electrons_per_pixel_at_300s": 5593.74,
+        "sky_electrons_per_pixel_at_600s": 11187.48
+      },
+      "I": {
+        "system": "Vega",
+        "sky_central_wavelength_um": 0.79,
+        "sky_mu_mag_arcsec2": 19.2,
+        "zero_point_mag_for_1_DN_per_second": 28.0,
+        "sky_DN_per_second_per_pixel": 46.49826,
+        "sky_electrons_per_second_per_pixel": 56.30939,
+        "sky_electrons_per_pixel_at_300s": 16892.82,
+        "sky_electrons_per_pixel_at_600s": 33785.64
+      },
+      "Z": {
+        "system": "Vega",
+        "sky_central_wavelength_um": null,
+        "sky_mu_mag_arcsec2": null,
+        "zero_point_mag_for_1_DN_per_second": 27.0,
+        "sky_DN_per_second_per_pixel": null,
+        "sky_electrons_per_second_per_pixel": null,
+        "formula_if_sky_mu_is_supplied": "sky_electrons_per_second_per_pixel = 1072953359.31082 * 10^(-0.4 * sky_mu_mag_arcsec2)"
+      }
+    }
+  }
+}

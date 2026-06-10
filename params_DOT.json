@@ -1,0 +1,140 @@
+{
+  "id": "DOT_3p6m_4K_CCD_Imager_optical_native",
+  "telescope": {
+    "name": "3.6m Devasthal Optical Telescope",
+    "site": "Devasthal, India",
+    "aperture_m": 3.6
+  },
+  "instrument": {
+    "name": "4Kx4K CCD Imager",
+    "mode": "optical_direct_imaging_native_unbinned",
+    "pixel_scale_arcsec_per_pixel": 0.096,
+    "pixel_area_arcsec2_per_pixel": 0.009216,
+    "detector": {
+      "format_pixels": [4096, 4096],
+      "pixel_size_um": 15,
+      "selectable_gain_electrons_per_ADU": [1, 2, 3, 5, 10]
+    }
+  },
+  "psf": {
+    "gaussian_conversion": {
+      "sigma_arcsec": "fwhm_arcsec / 2.35482",
+      "sigma_pixels": "sigma_arcsec / pixel_scale_arcsec_per_pixel"
+    },
+    "cases": {
+      "median_observed_V_2016_2021": {
+        "fwhm_arcsec": 1.24,
+        "sigma_arcsec": 0.52658,
+        "fwhm_pixels": 12.91667,
+        "sigma_pixels": 5.4852
+      },
+      "best_observed_SDSS_r_2020A": {
+        "fwhm_arcsec": 0.43,
+        "sigma_arcsec": 0.1826,
+        "fwhm_pixels": 4.47917,
+        "sigma_pixels": 1.90213
+      },
+      "site_median_seeing": {
+        "fwhm_arcsec": 1.1,
+        "sigma_arcsec": 0.46713,
+        "fwhm_pixels": 11.45833,
+        "sigma_pixels": 4.86591
+      },
+      "good_site_seeing": {
+        "fwhm_arcsec": 0.7,
+        "sigma_arcsec": 0.29726,
+        "fwhm_pixels": 7.29167,
+        "sigma_pixels": 3.09649
+      }
+    }
+  },
+  "sky_background": {
+    "rate_unit": "electrons_per_second_per_pixel",
+    "calculation": "sky_electrons_per_second_per_pixel = photon_flux_zero_mag * 10^(-0.4 * sky_mu_mag_arcsec2) * bandwidth_angstrom * 1e4 * telescope_collecting_area_m2 * pixel_area_arcsec2_per_pixel * effective_throughput",
+    "telescope_collecting_area_m2": 10.17876,
+    "filters": {
+      "U": {
+        "system": "Bessell",
+        "central_wavelength_angstrom": 3663,
+        "bandwidth_angstrom": 650,
+        "sky_mu_mag_arcsec2": 22.0,
+        "effective_throughput_used": 0.26,
+        "sky_electrons_per_second_per_pixel": 0.19071,
+        "sky_electrons_per_pixel_at_300s": 57.21
+      },
+      "B": {
+        "system": "Bessell",
+        "central_wavelength_angstrom": 4361,
+        "bandwidth_angstrom": 890,
+        "sky_mu_mag_arcsec2": 22.26,
+        "effective_throughput_used": 0.356,
+        "sky_electrons_per_second_per_pixel": 0.55464,
+        "sky_electrons_per_pixel_at_300s": 166.39
+      },
+      "V": {
+        "system": "Bessell",
+        "central_wavelength_angstrom": 5448,
+        "bandwidth_angstrom": 840,
+        "sky_mu_mag_arcsec2": 21.09,
+        "effective_throughput_used": 0.429,
+        "sky_electrons_per_second_per_pixel": 1.23872,
+        "sky_electrons_per_pixel_at_300s": 371.62
+      },
+      "R": {
+        "system": "Bessell",
+        "central_wavelength_angstrom": 6407,
+        "bandwidth_angstrom": 1580,
+        "sky_mu_mag_arcsec2": 20.48,
+        "effective_throughput_used": 0.398,
+        "sky_electrons_per_second_per_pixel": 2.7183,
+        "sky_electrons_per_pixel_at_300s": 815.49
+      },
+      "I": {
+        "system": "Bessell",
+        "central_wavelength_angstrom": 7980,
+        "bandwidth_angstrom": 1540,
+        "sky_mu_mag_arcsec2": 18.76,
+        "effective_throughput_used": 0.268,
+        "sky_electrons_per_second_per_pixel": 5.71365,
+        "sky_electrons_per_pixel_at_300s": 1714.1
+      }
+    },
+    "available_but_not_converted_filters": {
+      "u": {
+        "system": "SDSS",
+        "central_wavelength_angstrom": 3596,
+        "bandwidth_angstrom": 570,
+        "sky_mu_mag_arcsec2": 22.0,
+        "sky_electrons_per_second_per_pixel": null
+      },
+      "g": {
+        "system": "SDSS",
+        "central_wavelength_angstrom": 4639,
+        "bandwidth_angstrom": 1280,
+        "sky_mu_mag_arcsec2": 22.31,
+        "sky_electrons_per_second_per_pixel": null
+      },
+      "r": {
+        "system": "SDSS",
+        "central_wavelength_angstrom": 6122,
+        "bandwidth_angstrom": 1150,
+        "sky_mu_mag_arcsec2": 20.72,
+        "sky_electrons_per_second_per_pixel": null
+      },
+      "i": {
+        "system": "SDSS",
+        "central_wavelength_angstrom": 7439,
+        "bandwidth_angstrom": 1230,
+        "sky_mu_mag_arcsec2": 19.78,
+        "sky_electrons_per_second_per_pixel": null
+      },
+      "z": {
+        "system": "SDSS",
+        "central_wavelength_angstrom": 8896,
+        "bandwidth_angstrom": 1070,
+        "sky_mu_mag_arcsec2": 18.14,
+        "sky_electrons_per_second_per_pixel": null
+      }
+    }
+  }
+}
