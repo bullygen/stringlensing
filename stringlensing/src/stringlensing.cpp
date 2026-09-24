@@ -106,8 +106,13 @@ void lensed_sersic_profile_inplace(
             double dx_pix = static_cast<double>(x) - Nx / 2;
             double dy_pix = static_cast<double>(y) - Ny / 2;
 
-            double dx_string = dx_pix * std::sin(pos_angle_string_rad) - dy_pix * std::cos(pos_angle_string_rad) + distane_center_string;
-            double dy_string = dx_pix * std::cos(pos_angle_string_rad) + dy_pix * std::sin(pos_angle_string_rad);
+            // Смещение задаёт положение струны относительно центра кадра.
+            // Геометрию струны вычисляем в смещённых координатах, тогда как
+            // профиль исходного объекта ниже берётся в координатах кадра.
+            double x2 = dx_pix + distane_center_string * std::sin(pos_angle_string_rad);
+            double y2 = dy_pix - distane_center_string * std::cos(pos_angle_string_rad);
+            double dx_string = x2 * std::sin(pos_angle_string_rad) - y2 * std::cos(pos_angle_string_rad);
+            double dy_string = x2 * std::cos(pos_angle_string_rad) + y2 * std::sin(pos_angle_string_rad);
 
             double RsY = RsRg / (1.0 + std::tan(inclination) * std::sin(dy_string * pixel_scale_arcsec_per_pix / sec_in_rad));
             double Re = deficit * (1.0 - RsY) * (std::cos(inclination) + std::sin(inclination) * dy_string * pixel_scale_arcsec_per_pix / sec_in_rad);
@@ -159,7 +164,7 @@ void lensed_AB_sersic_profile_inplace(
     double q,
     double pos_angle_galaxy_rad,
     double ThetaE, // in arcseconds
-    double dThetaEdXi, // in arcseconds per arcsecond of xi coordinate
+    double dThetaEdXi, // arcseconds per radian of xi; converted to pixels below
     double pos_angle_string_rad,
     double distane_center_string,
     double pixel_scale_arcsec_per_pix
@@ -170,8 +175,13 @@ void lensed_AB_sersic_profile_inplace(
             double dx_pix = static_cast<double>(x) - Nx / 2;
             double dy_pix = static_cast<double>(y) - Ny / 2;
 
-            double dx_string = dx_pix * std::sin(pos_angle_string_rad) - dy_pix * std::cos(pos_angle_string_rad) + distane_center_string;
-            double dy_string = dx_pix * std::cos(pos_angle_string_rad) + dy_pix * std::sin(pos_angle_string_rad);
+            // Смещение задаёт положение струны относительно центра кадра.
+            // Геометрию струны вычисляем в смещённых координатах, тогда как
+            // профиль исходного объекта ниже берётся в координатах кадра.
+            double x2 = dx_pix + distane_center_string * std::sin(pos_angle_string_rad);
+            double y2 = dy_pix - distane_center_string * std::cos(pos_angle_string_rad);
+            double dx_string = x2 * std::sin(pos_angle_string_rad) - y2 * std::cos(pos_angle_string_rad);
+            double dy_string = x2 * std::cos(pos_angle_string_rad) + y2 * std::sin(pos_angle_string_rad);
 
             double Re = ThetaE / pixel_scale_arcsec_per_pix + dThetaEdXi * dy_string / sec_in_rad;
 
@@ -280,8 +290,13 @@ void lensed_uniform_profile_inplace(
             double dx_pix = static_cast<double>(x) - Nx / 2;
             double dy_pix = static_cast<double>(y) - Ny / 2;
 
-            double dx_string = dx_pix * std::sin(pos_angle_string_rad) - dy_pix * std::cos(pos_angle_string_rad) + distane_center_string;
-            double dy_string = dx_pix * std::cos(pos_angle_string_rad) + dy_pix * std::sin(pos_angle_string_rad);
+            // Смещение задаёт положение струны относительно центра кадра.
+            // Геометрию струны вычисляем в смещённых координатах, тогда как
+            // профиль исходного объекта ниже берётся в координатах кадра.
+            double x2 = dx_pix + distane_center_string * std::sin(pos_angle_string_rad);
+            double y2 = dy_pix - distane_center_string * std::cos(pos_angle_string_rad);
+            double dx_string = x2 * std::sin(pos_angle_string_rad) - y2 * std::cos(pos_angle_string_rad);
+            double dy_string = x2 * std::cos(pos_angle_string_rad) + y2 * std::sin(pos_angle_string_rad);
 
             double RsY = RsRg / (1.0 + std::tan(inclination) * std::sin(dy_string * pixel_scale_arcsec_per_pix / sec_in_rad));
             double Re = deficit * (1.0 - RsY) * (std::cos(inclination) + std::sin(inclination) * dy_string * pixel_scale_arcsec_per_pix / sec_in_rad);
@@ -975,7 +990,7 @@ py::array_t<double> generateLensedABSersicGalaxy_new(
     double q,
     double pos_angle_galaxy_rad,
     double ThetaE, // in arcseconds
-    double dThetaEdXi, // in arcseconds per arcsecond of xi coordinate
+    double dThetaEdXi, // arcseconds per radian of xi; converted to pixels below
     double pos_angle_string_rad,
     double distane_center_string,
     double pixel_scale_arcsec_per_pix

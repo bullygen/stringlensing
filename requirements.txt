@@ -10,3 +10,5 @@ ray==2.54.1
 scipy==1.16.3
 setuptools==80.9.0
 wheel==0.45.1
+markdown==3.9
+weasyprint==66.0

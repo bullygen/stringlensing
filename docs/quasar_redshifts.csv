@@ -1,0 +1,25 @@
+object,z,source_title,source_url,match_note
+A2213–2652,1.27,Cambridge Gravitationally Lensed Quasars,https://research.ast.cam.ac.uk/lensedquasars/indiv/A2213-2652.html,каталог линз
+DESJ0245–0556,1.54,Lemon et al. 2020,https://academic.oup.com/mnras/article/494/3/3491/5801039,спектроскопия линзы
+J0116+4052,1.85,Lemon et al. 2023,https://academic.oup.com/mnras/article/520/3/3305/6948349,спектроскопия; обычная галактическая линза
+J0127–1441,1.76,Lemon et al. 2018,https://academic.oup.com/mnras/article/479/4/5060/4970775,NIQ
+J0146–1133,1.44,Lemon et al. 2018,https://academic.oup.com/mnras/article/479/4/5060/4970775,линза; галактика переднего плана
+J0325-2232,1.35,Lemon et al. 2023,https://academic.oup.com/mnras/article/520/3/3305/6948349,спектры обеих компонент
+J0749+2255,2.17,Chen et al. 2023,https://arxiv.org/abs/2209.11249,физическая двойная система
+J0826+7002,1.62,Lemon et al. 2023,https://academic.oup.com/mnras/article/520/3/3305/6948349,cutout исключён из fit
+J0907+0003,1.3,Cambridge Gravitationally Lensed Quasars,https://research.ast.cam.ac.uk/lensedquasars/indiv/J0907%2B0003.html,каталог линз
+J0907+6224,1.86,Lemon et al. 2023,https://academic.oup.com/mnras/article/520/3/3305/6948349,спектроскопия
+J0937+5835,2.115,NED TAP; [HLC2023] 00272753A/B,https://ned.ipac.caltech.edu/tap/sync?QUERY=SELECT+prefname%2Cz%2Cz_bibcode+FROM+objdir+WHERE+CONTAINS%28POINT%28%27J2000%27%2Cra%2Cdec%29%2CCIRCLE%28%27J2000%27%2C144.3832%2C58.5906%2C0.001%29%29%3D1&LANG=ADQL&REQUEST=doQuery&FORMAT=csv,координатная идентификация двух компонент; bibcode 2023MNRAS.520.3305L
+J1515+3137,1.97,Lemon et al. 2019,https://academic.oup.com/mnras/article/483/3/4242/5237725,использованы исправленные координаты +31.627875
+J1518+4658,2.36,Lemon et al. 2019,https://academic.oup.com/mnras/article/483/3/4242/5237725,спектроскопия
+J1524+4801,1.7,Lemon et al. 2019,https://academic.oup.com/mnras/article/483/3/4242/5237725,спектроскопия
+J1540+4445,0.61,Lemon et al. 2018,https://academic.oup.com/mnras/article/479/4/5060/4970775,NIQ
+J1616+1415,2.88,Lemon et al. 2019,https://academic.oup.com/mnras/article/483/3/4242/5237725,спектроскопия
+J2015+0707,2.6039,"LAMOST QSO DR6-9, Jin et al. 2023",https://vizier.cds.unistra.fr/viz-bin/VizieR-3?-source=J%2FApJS%2F265%2F25,SDSS J201512.90+070659.7 в 1.7″; одна компонента
+J2032–2358,1.64,Lemon et al. 2019,https://academic.oup.com/mnras/article/483/3/4242/5237725,NIQ
+J2132+2603,2.26,Lemon et al. 2019,https://academic.oup.com/mnras/article/483/3/4242/5237725,спектроскопия
+J2147-1340,1.382,NED TAP; [LAA2023] J2147-1340 BG1/BG2,https://ned.ipac.caltech.edu/tap/sync?QUERY=SELECT+prefname%2Cz%2Cz_bibcode+FROM+objdir+WHERE+CONTAINS%28POINT%28%27J2000%27%2Cra%2Cdec%29%2CCIRCLE%28%27J2000%27%2C326.9957%2C-13.6772%2C0.001%29%29%3D1&LANG=ADQL&REQUEST=doQuery&FORMAT=csv,координатная идентификация двух компонент; bibcode 2023MNRAS.520.3305L
+J2250+2117,1.73,Lemon et al. 2019,https://academic.oup.com/mnras/article/483/3/4242/5237725,спектроскопия
+J2316+0610,1.955,Lemon et al. 2023,https://academic.oup.com/mnras/article/520/3/3305/6948349,фон; foreground lens z=0.378 не использован
+PSJ0417+3325,1.41,Lemon et al. 2018,https://academic.oup.com/mnras/article/479/4/5060/4970775,спектроскопия
+"QSO1146+111B,C",1.01,Green et al. 2004,https://hea-www.harvard.edu/~pgreen/Papers/postcos_04.pdf,B/C; cutout исключён из fit

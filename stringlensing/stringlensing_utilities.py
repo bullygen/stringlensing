@@ -55,7 +55,7 @@ def get_line_coords(image_shape, pixel_scale, theta, h):
 def get_string_line_coords(image_shape, pixel_scale, string_params):
     string_position = {}
     theta_0 = string_params['pos_angle_string_rad']
-    h_0 = string_params['distane_center_string']
+    h_0 = string_params['distane_center_string'] * pixel_scale  # C++ задаёт смещение в пикселях
     Re = 8 * np.pi * string_params['tension'] * 206265 * (1 - string_params['RsRg']) * np.cos(string_params['inclination'])
     alpha = np.arctan(8 * np.pi * string_params['tension'] * np.sin(string_params['inclination']))
     h_plus = (h_0 + Re) * np.cos(alpha)

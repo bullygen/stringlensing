@@ -113,3 +113,16 @@ Fit уже созданного dataset:
 - `analysis/examples/` - PNG-примеры, если включены `--example-plots` или `--makeimg`.
 
 Директории результатов обычно тяжелые и исключены из Git правилом `result*`.
+
+## Реальные изображения без truth
+
+Режим `--mode real` запускает многозапусковую подгонку точечных пар из `synthetic_manifest.csv`, созданного [photometry_cli.py](real_data_workflow.md):
+
+```bash
+python fit_quality_pipeline.py --mode real \
+  --real-input-dir ../result_real_prepared \
+  --real-output-dir ../result_real_pointfit_v2 \
+  --real-starts 6 --real-rounds 2
+```
+
+Для CSL-1 используется отдельное сравнение профилей Серсика. Модель двойного точечного источника не восстанавливает градиент разделения вдоль струны.

@@ -47,6 +47,8 @@ from PyQt6.QtWidgets import (
 from scipy.ndimage import median_filter
 from scipy.optimize import curve_fit
 
+from photometry_cli import conversion
+
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
@@ -193,24 +195,13 @@ def _is_numeric_image(array: np.ndarray) -> bool:
 
 
 def find_gain(header: fits.Header, image_adu: np.ndarray, background_mask: np.ndarray) -> tuple[float, str]:
-    for key in GAIN_KEYS:
-        value = header.get(key)
-        try:
-            gain = float(value)
-        except (TypeError, ValueError):
-            continue
-        if np.isfinite(gain) and gain > 0:
-            return gain, f"header {key}"
+    """Вернуть строго обоснованный коэффициент перевода входной шкалы в e-.
 
-    background = image_adu[background_mask & np.isfinite(image_adu)]
-    if background.size < 16:
-        return 1.0, "fallback unity; too few background pixels"
-
-    mean_adu = float(np.nanmean(background))
-    var_adu = float(np.nanvar(background, ddof=1))
-    if np.isfinite(mean_adu) and np.isfinite(var_adu) and mean_adu > 0 and var_adu > 0:
-        return mean_adu / var_adu, "estimated mean/variance"
-    return 1.0, "fallback unity; mean/variance unusable"
+    Для HST ELECTRONS/S это EXPTIME, а не CCDGAIN. Для ADU нужен
+    записанный в FITS gain или отдельная калибровка; отношение mean/var
+    на уже вычтенном/стековом фоне не является надёжной оценкой.
+    """
+    return conversion(header, None)
 
 
 def estimate_background_and_gain(image_adu: np.ndarray, header: fits.Header) -> BackgroundResult:
@@ -237,14 +228,14 @@ def estimate_background_and_gain(image_adu: np.ndarray, header: fits.Header) -> 
 
     _, background_mean_adu, background_sigma_adu = sigma_clipped_stats(image[background_mask], sigma=3.0, maxiters=5)
     gain, gain_source = find_gain(header, image, background_mask)
-    image_electrons = image * gain
+    image_electrons = (image - background_mean_adu) * gain
     masked_fraction = 1.0 - float(background_mask.sum()) / float(finite.sum())
 
     return BackgroundResult(
         image_electrons=image_electrons,
         background_mean_adu=float(background_mean_adu),
         background_sigma_adu=float(background_sigma_adu),
-        background_mean_electrons=float(background_mean_adu * gain),
+        background_mean_electrons=0.0,
         background_sigma_electrons=float(background_sigma_adu * gain),
         gain=float(gain),
         gain_source=gain_source,
@@ -678,7 +669,7 @@ class PhotometryEdaWindow(QMainWindow):
         self._preview_crop()
         self.bg_label.setText(
             "Background ADU mean={:.6g}, sigma={:.6g}\n"
-            "Gain={:.6g} ({})\n"
+            "Electron conversion={:.6g} ({})\n"
             "Electron mean={:.6g}, sigma={:.6g}\n"
             "Masked bright/object fraction={:.3f}".format(
                 result.background_mean_adu,

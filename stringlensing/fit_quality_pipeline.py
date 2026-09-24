@@ -9,6 +9,7 @@ from concurrent.futures import ProcessPoolExecutor
 import ray
 
 import os
+import subprocess
 import argparse
 import json
 import math
@@ -1126,8 +1127,12 @@ def run_pipeline(
 def parse_args() -> argparse.Namespace:
     env = build_default_environment()
     parser = argparse.ArgumentParser(description="Pipeline for fit-quality validation on synthetic 2D images.")
-    parser.add_argument("--mode", choices=["generate", "fit", "analyze", "all", "makeimg"], default="all")
+    parser.add_argument("--mode", choices=["generate", "fit", "analyze", "all", "makeimg", "real"], default="all")
     parser.add_argument("--output-dir", default="SL_result")
+    parser.add_argument("--real-input-dir", help="Prepared dataset from photometry_cli.py for --mode real")
+    parser.add_argument("--real-output-dir", default="../result_real_pointfit")
+    parser.add_argument("--real-starts", type=int, default=6)
+    parser.add_argument("--real-rounds", type=int, default=2)
     parser.add_argument("--n-samples", type=int, default=50)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--max-retries", type=int, default=7)
@@ -1183,6 +1188,20 @@ def main() -> None:
         model_param_names=[spec.name for spec in specs],
         env_param_names=["nx", "ny", "pixel_scale", "noise_sigma", "psf_sigma"],
     )
+
+    if mode == "real":
+        if not args.real_input_dir:
+            raise SystemExit("--mode real требует --real-input-dir")
+        subprocess.run(
+            [sys.executable, str(Path(__file__).with_name("real_fit.py")),
+             "--input-dir", args.real_input_dir,
+             "--output-dir", args.real_output_dir,
+             "--starts", str(args.real_starts),
+             "--rounds", str(args.real_rounds),
+             "--seed", str(args.seed)],
+            check=True,
+        )
+        return
 
     run_pipeline(
         adapter=adapter,

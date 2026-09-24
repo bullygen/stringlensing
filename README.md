@@ -49,7 +49,14 @@ python eda_photometry.py
 - [Сборка C++ extension](BUILD_CPP_EXTENSION.md)
 - [fit_quality_pipeline.py](docs/fit_quality_pipeline.md)
 - [eda_photometry.py](docs/eda_photometry.md)
+- [eda_spectral.py](docs/eda_spectral.md)
 - [telescope_simulation.py](docs/telescope_simulation.md)
+- [Реальные FITS, CSL-1, DOT/Keck и PDF-отчёты](docs/real_data_workflow.md)
+- [Карта данных и методов (PDF)](docs/reports/00_data_and_methods.pdf)
+- [Анализ квазаров (PDF)](docs/reports/01_quasars.pdf)
+- [CSL-1 и наклонная струна (PDF)](docs/reports/02_csl1.pdf)
+- [Прогноз DOT/Keck (PDF)](docs/reports/03_telescopes.pdf)
+- [Атлас всех реальных фитов (PDF)](docs/reports/04_real_fit_atlas.pdf)
 
 ## Основные возможности C++ extension
 
@@ -74,4 +81,8 @@ python eda_photometry.py
 - `stringlensing/build`, `*.so`, `*.pyd`, `*.dylib` - бинарные артефакты сборки;
 - Python/cache/runtime-файлы.
 
-Это позволяет держать репозиторий легким: код, параметры и документация попадают в Git, а большие данные остаются локально.
+Исходный `task.md`, локальные статьи и таблицы также исключены; нормализованный каталог и PDF-отчёты публикуются. Это позволяет держать репозиторий легким: код, параметры и документация попадают в Git, а большие данные остаются локально.
+
+## Текущие исследовательские результаты
+
+Итоговые Markdown и PDF находятся в `docs/reports/`. Инвентарь доступных FITS — в `docs/data_inventory.csv`; красные смещения с первоисточниками и расстояния по закону Хаббла — в `docs/quasar_redshifts.csv` и `docs/quasar_distances_hubble.csv`. Для воспроизведения новых cutout, фитов и графиков см. [рабочий процесс](docs/real_data_workflow.md).
